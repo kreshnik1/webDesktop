@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styler.css">
+    <link rel="stylesheet" type="text/css" href="css/memoryStyler.css">
+    <link rel="stylesheet" type="text/css" href="css/chatStyler.css">
+    <link rel="stylesheet" type="text/css" href="css/aboutStyler.css">
+	<link rel="stylesheet" type="text/css" href="css/calculator.css">
+	<link rel="stylesheet" type="text/css" href="css/timerStyler.css">
+    <title>Desktop Application</title>	
+</head>
+
+<body>
+<div id="main-frame" class="main-frame">
+	 <template id="template-window">
+        <div class="window">
+            <div class="window-top">
+                <i class="material-icons md-24 window-icon no-pointer"></i><span class="window-title no-pointer"></span><span class="window-title-extra no-pointer"></span>
+                <div class="window-buttons">
+                    <span class="button exit-button" title="Close"><span class="exit-cross"><i class="material-icons md-18">close</i></span></span>
+                    <span class="button minimize-button" title="Minimize"><span class="minimize-icon"><i class="material-icons md-18">remove</i></span></span>
+                </div>
+            </div>
+            <div class="window-menu"></div>
+            <div class="window-content"></div>
+        </div>
+    </template>
+
+    <template id="template-tooltip">
+        <div class="tooltip-line">
+            <span class="tooltip float-left"></span>
+            <i class="material-icons md-16 float-right tooltip-close" title="Close">close</i>
+        </div>
+    </template>
+
+    <template id="template-maximize-button">
+        <span class="button maximize-button" title="Maximize"><span class="maximize-icon"><i class="material-icons md-13 resize-icon">crop_din</i></span></span>
+    </template>
+
+    <template id="template-window-menu-alternative">
+        <a class="menu-alternative"></a>
+    </template>
+
+    <template id="template-settings">
+        <div class="settings-wrapper">
+            <div class="settings">
+            </div>
+        </div>
+    </template>
+
+    <template id="template-memory-settings">
+        <form class="settings-form">
+            <label>Choose board-size:
+                <select name="board-size">
+                    <option value="2x2">2x2</option>
+                    <option value="2x4">2x4</option>
+                    <option value="4x4" selected>4x4</option>
+                    <option value="4x2">4x2</option>
+                </select>
+            </label>
+            <input type="button" class = "submits" id="submit" value="Save" />
+        </form>
+    </template>
+
+    <template id="template-memory-gameover">
+        <div class="memory-gameover-wrapper">
+            <div class="memory-gameover">
+                <h1>You made it!</h1>
+                <h3>It took you <span class="memory-turns"></span> tries</h3>
+                <h3>in <span class="memory-time"></span> seconds!</h3>
+            </div>
+        </div>
+    </template>
+	
+    <template id="template-chat-application">
+        <div class="chat-message-list">
+            <ul>
+            </ul>
+        </div>
+        <div class="chat-form">
+            <form>
+                <textarea class="chat-inputField" title="Message"></textarea>
+                <input class="chat-sendButton" title="Send" type="button" value="Send" disabled="disabled">
+            </form>
+        </div>
+    </template>
+
+    <template id="template-chat-message-line">
+        <li>
+            <div class="chat-message-line">
+                <span class="chat-username"></span><span class="chat-message"></span>
+            </div>
+        </li>
+    </template>
+
+    <template id="template-chat-history-separator">
+        <div class="chat-history-separator"><i class="material-icons md-12">history</i> History <i class="material-icons md-12">keyboard_arrow_up</i></div>
+    </template>
+
+    <template id="template-chat-settings">
+        <form class="settings-form">
+            <label>Username: <input type="text" name="username" placeholder="Enter Username">
+            </label><br>
+            <label>Server: <input type="text" name="server">
+            </label><br>
+            <label>Channel: <input type="text" name="channel" placeholder="optional">
+            </label><br>
+            <label id="connect"><input type="button" class="submits1" value="Connect" /></label>
+        </form>
+    </template>
+
+    <template id="template-chat-emoji">
+        <span class="emoji"></span>
+    </template>
+
+    <template id="template-window-menu-info">
+        <span class="menu-info"></span>
+    </template>
+	
+    <template id="template-about-application">
+        <h2>About</h2>
+        <p class="about-copyright">©2017 Kreshnik Abdiju</p>
+        <h2><i class="material-icons md-30 launch-icon">apps</i> Memory</h2>
+        <p>You can either play with your mouse or with arrow-keys. When you start the application a timer starts. When you
+            complete the game you will see the time and amount of tries.</p>
+        <p>In the settings you can change the board-size.</p>
+
+        <h2><i class="material-icons md-30 launch-icon">chat</i> Chat</h2>
+        <p>You can change Username, Channel and server at any time in the settings.</p>
+        <h3>You can use also Emojis</h3>
+			
+        <h3>History</h3>
+        <p>Each channel-history is saved and loaded the next time you get online!</p>
+		
+		<h2><i class="material-icons md-30 launch-icon">web</i> Calculator</h2>
+        <p>Simple calculator</p>
+		
+        <h2><i class="material-icons md-30 launch-icon">loop</i> Reset Desktop</h2>
+        <p>This resets the desktop and quits all the open applications.</p>
+		
+    </template>
+	
+	
+	<template id="template-calculator-application">
+		<div id="calculator" class="calculator">
+
+		  <button id="clear" class="clear" value = "C">C</button>
+
+		  <div id="viewer" class="viewer">0</div>
+
+		  <button class="num" data-num="7" value = "7">7</button>
+		  <button class="num" data-num="8" value = "8">8</button>
+		  <button class="num" data-num="9" value = "9">9</button>
+		  <button data-ops="plus" class="ops" value = "+">+</button>
+
+		  <button class="num" data-num="4" value = "4">4</button>
+		  <button class="num" data-num="5" value = "5">5</button>
+		  <button class="num" data-num="6" value = "6">6</button>
+		  <button data-ops="minus" class="ops" value = "-">-</button>
+
+		  <button class="num" data-num="1" value = "1">1</button>
+		  <button class="num" data-num="2" value = "2">2</button>
+		  <button class="num" data-num="3" value = "3">3</button>
+		  <button data-ops="times" class="ops" value = "*">*</button>
+
+		  <button class="num" data-num="0" value = "0">0</button>
+		  <button class="num" data-num="" value = ""></button>
+		  <button id="equals" class="equals" value = "=" data-result="">=</button>
+		  <button data-ops="divided by" class="ops" value = "/">/</button>
+	</div>
+	
+
+	<button id="reset" class="reset">Reset </button>
+
+	</template>
+		
+	<template id = "template-timer-application">
+		<div id = "timer">
+			<h1>00:00:00</h1>
+			<button id="start" class="b" value = "start">Start</button>
+			<button id="stop" class="b" value = "stop">Stop</button>
+			<button id="clear"class="b" value="clear">Clear</button>
+		</div>	
+	</template>
+	
+    <!-- END OF TEMPLATES -->
+    <div class="launcher">
+        <ul>
+            <li value="reset">
+                <i class="material-icons md-30 launch-icon">loop</i>
+                <div class="tooltip-container">
+                    <div class="tooltip-line">
+                        <span class="tooltip-title">Reset Desktop</span>
+                    </div>
+                </div>
+            </li>
+
+            <li value="about">
+                <i class="material-icons md-30 launch-icon">help_outline</i>
+                <div class="tooltip-container">
+                    <div class="tooltip-line">
+                        <span class="tooltip-title">About</span>
+                    </div>
+                </div>
+            </li>
+
+            <li value="memory">
+                <i class="material-icons md-30 launch-icon">apps</i>
+                <div class="tooltip-container">
+                    <div class="tooltip-line">
+                        <span class="tooltip-title">Memory</span>
+                    </div>
+                </div>
+            </li>
+
+            <li value="chat">
+			<i class="material-icons md-30 launch-icon">textsms</i>
+			<div class="tooltip-container">
+                    <div class="tooltip-line">
+                        <span class="tooltip-title">Chat</span>
+                    </div>
+                </div>
+            </li>
+			
+			<li value="calculator">
+			<i class="material-icons md-30 launch-icon">web</i>
+                <div class="tooltip-container">
+                    <div class="tooltip-line">
+                        <span class="tooltip-title">Calculator</span>
+                    </div>
+                </div>
+            </li>
+			
+			<li value="timer">
+				<i class="material-icons md-30 launch-icon">av_timer</i>
+                <div class="tooltip-container">
+                    <div class="tooltip-line">
+                        <span class="tooltip-title">Timer</span>
+                    </div>
+                </div>
+            </li>			
+        </ul>
+
+        <div class="launcher-clock">
+            <span class="launcher-clock-time">99:99</span>
+            <span class="launcher-clock-date">1970-01-01</span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../build.js"></script>
+
+</body>
+</html>
